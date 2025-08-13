@@ -28,7 +28,7 @@ else
   success=false
 
   for b in "${try_branches[@]}"; do
-    raw_url="https://raw.githubusercontent.com/$owner_repo/$b/.cursor/project.mdc"
+    raw_url="https://raw.githubusercontent.com/$owner_repo/$b/files/project.mdc"
     echo "Downloading $raw_url ..."
     if command -v curl >/dev/null 2>&1; then
       if curl -fsSL -o "$PROJECT_FILE" "$raw_url"; then
@@ -69,7 +69,7 @@ else
 
   if [ -n "$owner_repo" ]; then
     for b in "${try_branches[@]}"; do
-      raw_url="https://raw.githubusercontent.com/$owner_repo/$b/.cursor/branch.mdc"
+      raw_url="https://raw.githubusercontent.com/$owner_repo/$b/files/branch.mdc"
       echo "Downloading $raw_url ..."
       if command -v curl >/dev/null 2>&1; then
         if curl -fsSL -o "$BRANCH_FILE" "$raw_url"; then
