@@ -26,24 +26,19 @@ else
   owner_repo="itsumura-h/cursor-template"
   success=false
 
-  for b in "main" "master"; do
-    raw_url="https://raw.githubusercontent.com/$owner_repo/$b/files/project.mdc"
-    echo "Downloading $raw_url ..."
-    if command -v curl >/dev/null 2>&1; then
-      if curl -fsSL -o "$PROJECT_FILE" "$raw_url"; then
-        success=true
-        break
-      fi
-    elif command -v wget >/dev/null 2>&1; then
-      if wget -qO "$PROJECT_FILE" "$raw_url"; then
-        success=true
-        break
-      fi
-    else
-      echo "curl または wget が必要です。インストールしてください。" >&2
-      break
+  raw_url="https://raw.githubusercontent.com/$owner_repo/main/files/project.mdc"
+  echo "Downloading $raw_url ..."
+  if command -v curl >/dev/null 2>&1; then
+    if curl -fsSL -o "$PROJECT_FILE" "$raw_url"; then
+      success=true
     fi
-  done
+  elif command -v wget >/dev/null 2>&1; then
+    if wget -qO "$PROJECT_FILE" "$raw_url"; then
+      success=true
+    fi
+  else
+    echo "curl または wget が必要です。インストールしてください。" >&2
+  fi
 
   if [ "$success" = true ]; then
     echo "ダウンロードに成功しました: $PROJECT_FILE"
@@ -66,24 +61,19 @@ else
   success=false
 
   if [ -n "$owner_repo" ]; then
-    for b in "main" "master"; do
-      raw_url="https://raw.githubusercontent.com/$owner_repo/$b/files/branch.mdc"
-      echo "Downloading $raw_url ..."
-      if command -v curl >/dev/null 2>&1; then
-        if curl -fsSL -o "$BRANCH_FILE" "$raw_url"; then
-          success=true
-          break
-        fi
-      elif command -v wget >/dev/null 2>&1; then
-        if wget -qO "$BRANCH_FILE" "$raw_url"; then
-          success=true
-          break
-        fi
-      else
-        echo "curl または wget が必要です。インストールしてください。" >&2
-        break
+    raw_url="https://raw.githubusercontent.com/$owner_repo/main/files/branch.mdc"
+    echo "Downloading $raw_url ..."
+    if command -v curl >/dev/null 2>&1; then
+      if curl -fsSL -o "$BRANCH_FILE" "$raw_url"; then
+        success=true
       fi
-    done
+    elif command -v wget >/dev/null 2>&1; then
+      if wget -qO "$BRANCH_FILE" "$raw_url"; then
+        success=true
+      fi
+    else
+      echo "curl または wget が必要です。インストールしてください。" >&2
+    fi
   else
     echo "git remote origin が見つからないためダウンロード元を特定できませんでした。" >&2
   fi
