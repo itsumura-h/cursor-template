@@ -24,10 +24,9 @@ else
   echo ".cursor/rules/project.mdc が見つかりません。GitHub からダウンロードを試みます..."
 
   owner_repo="itsumura-h/cursor-template"
-  try_branches=("main" "master")
   success=false
 
-  for b in "${try_branches[@]}"; do
+  for b in "main" "master"; do
     raw_url="https://raw.githubusercontent.com/$owner_repo/$b/files/project.mdc"
     echo "Downloading $raw_url ..."
     if command -v curl >/dev/null 2>&1; then
@@ -64,11 +63,10 @@ else
   owner_repo="itsumura-h/cursor-template"
   echo "ダウンロード元リポジトリ: $owner_repo"
 
-  try_branches=("main" "master")
   success=false
 
   if [ -n "$owner_repo" ]; then
-    for b in "${try_branches[@]}"; do
+    for b in "main" "master"; do
       raw_url="https://raw.githubusercontent.com/$owner_repo/$b/files/branch.mdc"
       echo "Downloading $raw_url ..."
       if command -v curl >/dev/null 2>&1; then
