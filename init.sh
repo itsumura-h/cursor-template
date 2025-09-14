@@ -16,11 +16,11 @@ RULES_DIR="$CURSOR_DIR/rules"
 mkdir -p "$RULES_DIR"
 echo ".cursor/rules ディレクトリを作成しました: $RULES_DIR"
 # ダウンロードするファイルの定義
-FILES_TO_DOWNLOAD=("project.mdc" "branch.mdc")
+FILES_TO_DOWNLOAD="project.mdc branch.mdc"
 owner_repo="itsumura-h/cursor-template"
 
 # 各ファイルをダウンロード
-for file in "${FILES_TO_DOWNLOAD[@]}"; do
+for file in $FILES_TO_DOWNLOAD; do
   TARGET_FILE="$RULES_DIR/$file"
   
   if [ -f "$TARGET_FILE" ]; then
