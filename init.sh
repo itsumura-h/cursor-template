@@ -15,6 +15,29 @@ echo ".cursor ディレクトリを作成しました: $CURSOR_DIR"
 RULES_DIR="$CURSOR_DIR/rules"
 mkdir -p "$RULES_DIR"
 echo ".cursor/rules ディレクトリを作成しました: $RULES_DIR"
+
+# .cursor/common_rule.mdc を常にダウンロードして上書き
+COMMON_RULE_TARGET="$CURSOR_DIR/common_rule.mdc"
+common_rule_url="https://raw.githubusercontent.com/$owner_repo/main/.cursor/common_rule.mdc"
+echo ".cursor/common_rule.mdc をダウンロードして上書きします: $COMMON_RULE_TARGET"
+success=false
+if command -v curl >/dev/null 2>&1; then
+  if curl -fsSL -o "$COMMON_RULE_TARGET" "$common_rule_url"; then
+    success=true
+  fi
+elif command -v wget >/dev/null 2>&1; then
+  if wget -qO "$COMMON_RULE_TARGET" "$common_rule_url"; then
+    success=true
+  fi
+else
+  echo "curl または wget が必要です。インストールしてください。" >&2
+fi
+if [ "$success" = true ]; then
+  echo "ダウンロードに成功しました: $COMMON_RULE_TARGET"
+else
+  echo "GitHub からのダウンロードに失敗しました。手動で $COMMON_RULE_TARGET を配置してください。" >&2
+fi
+
 # ダウンロードするファイルの定義
 FILES_TO_DOWNLOAD="project.mdc branch.mdc"
 owner_repo="itsumura-h/cursor-template"
