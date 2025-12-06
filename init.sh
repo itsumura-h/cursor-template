@@ -22,7 +22,7 @@ owner_repo="itsumura-h/cursor-template"
 # .cursor/rules/common_rule.mdc を常にダウンロードして上書き
 COMMON_RULE_TARGET="$RULES_DIR/common_rule.mdc"
 common_rule_url="https://raw.githubusercontent.com/$owner_repo/main/.cursor/common_rule.mdc"
-echo ".cursor/common_rule.mdc をダウンロードして上書きします: $COMMON_RULE_TARGET"
+echo ".cursor/rules/common_rule.mdc をダウンロードして上書きします: $COMMON_RULE_TARGET"
 success=false
 if command -v curl >/dev/null 2>&1; then
   if curl -fsSL -o "$COMMON_RULE_TARGET" "$common_rule_url"; then
@@ -38,7 +38,7 @@ fi
 if [ "$success" = true ]; then
   echo "ダウンロードに成功しました: $COMMON_RULE_TARGET"
 else
-  echo "GitHub からのダウンロードに失敗しました。手動で $COMMON_RULE_TARGET を配置してください。" >&2
+  echo "GitHub からのダウンロードに失敗しました。手動で $COMMON_RULE_TARGET を配置してください (.cursor/rules/common_rule.mdc になるようにしてください)。" >&2
 fi
 
 # ダウンロードするファイルの定義
