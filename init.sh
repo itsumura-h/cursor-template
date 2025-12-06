@@ -19,8 +19,8 @@ echo ".cursor/rules ディレクトリを作成しました: $RULES_DIR"
 # リポジトリ設定（common_rule_url などで使用するため先に定義）
 owner_repo="itsumura-h/cursor-template"
 
-# .cursor/common_rule.mdc を常にダウンロードして上書き
-COMMON_RULE_TARGET="$CURSOR_DIR/common_rule.mdc"
+# .cursor/rules/common_rule.mdc を常にダウンロードして上書き
+COMMON_RULE_TARGET="$RULES_DIR/common_rule.mdc"
 common_rule_url="https://raw.githubusercontent.com/$owner_repo/main/.cursor/common_rule.mdc"
 echo ".cursor/common_rule.mdc をダウンロードして上書きします: $COMMON_RULE_TARGET"
 success=false
