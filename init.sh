@@ -19,26 +19,26 @@ echo ".cursor/rules ディレクトリを作成しました: $RULES_DIR"
 # リポジトリ設定（common_rule_url などで使用するため先に定義）
 owner_repo="itsumura-h/cursor-template"
 
-# .cursor/rules/common_rule.mdc を常にダウンロードして上書き
-COMMON_RULE_TARGET="$RULES_DIR/common_rule.mdc"
-common_rule_url="https://raw.githubusercontent.com/$owner_repo/main/.cursor/common_rule.mdc"
-echo ".cursor/rules/common_rule.mdc をダウンロードして上書きします: $COMMON_RULE_TARGET"
+# AGENTS.md をプロジェクトルートに常にダウンロードして上書き
+AGENTS_TARGET="$(pwd)/AGENTS.md"
+AGENTS_URL="https://raw.githubusercontent.com/$owner_repo/main/AGENTS.md"
+echo "AGENTS.md をダウンロードして上書きします: $AGENTS_TARGET"
 success=false
 if command -v curl >/dev/null 2>&1; then
-  if curl -fsSL -o "$COMMON_RULE_TARGET" "$common_rule_url"; then
+  if curl -fsSL -o "$AGENTS_TARGET" "$AGENTS_URL"; then
     success=true
   fi
 elif command -v wget >/dev/null 2>&1; then
-  if wget -qO "$COMMON_RULE_TARGET" "$common_rule_url"; then
+  if wget -qO "$AGENTS_TARGET" "$AGENTS_URL"; then
     success=true
   fi
 else
   echo "curl または wget が必要です。インストールしてください。" >&2
 fi
 if [ "$success" = true ]; then
-  echo "ダウンロードに成功しました: $COMMON_RULE_TARGET"
+  echo "ダウンロードに成功しました: $AGENTS_TARGET"
 else
-  echo "GitHub からのダウンロードに失敗しました。手動で $COMMON_RULE_TARGET を配置してください (.cursor/rules/common_rule.mdc になるようにしてください)。" >&2
+  echo "GitHub からのダウンロードに失敗しました。手動で $AGENTS_TARGET を配置してください。" >&2
 fi
 
 # ダウンロードするファイルの定義

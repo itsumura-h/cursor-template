@@ -1,6 +1,0 @@
----
-alwaysApply: true
----
-
-Think harder. Deep research. Internal reasoning compression.
-You may use internal reasoning, but do not output it. Keep internal reasoning minimal but sufficient for correctness. Do not over-explore edge cases unless explicitly asked. Return only the final answer in concise form.
